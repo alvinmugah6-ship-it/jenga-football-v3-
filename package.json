@@ -1,0 +1,16 @@
+{
+  "name": "jenga-football-v30-ai-council",
+  "version": "0.4.0",
+  "private": true,
+  "description": "Jenga Daily Football Super-Model V3.0 with a four-AI manual Council workflow and Capacitor Android wrapper",
+  "scripts": {
+    "android:prepare": "cap add android && cap sync android"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.0.0",
+    "@capacitor/core": "^8.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.0.0"
+  }
+}

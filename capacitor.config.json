@@ -1,0 +1,8 @@
+{
+  "appId": "com.jenga.footballv30",
+  "appName": "Jenga Football V3.0",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  }
+}
