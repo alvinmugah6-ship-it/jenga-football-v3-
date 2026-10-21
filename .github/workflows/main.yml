@@ -1,4 +1,5 @@
-name: Build Jenga Football APK
+
+name: Build Jenga Football Automation-Ready APK
 
 "on":
   workflow_dispatch:
@@ -27,31 +28,43 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Prepare web assets
+      - name: Extract source ZIP
+        shell: bash
         run: |
-          test -f index.html
-          mkdir -p www
-          cp index.html www/index.html
+          ZIP_FILE="$(find . -maxdepth 1 -type f -name 'Jenga-Football-V3.0-Automation-Ready-Source*.zip' -print -quit)"
+          if [ -z "$ZIP_FILE" ]; then
+            echo "Source ZIP not found in repository root."
+            exit 1
+          fi
+          mkdir -p build-source
+          unzip -q "$ZIP_FILE" -d build-source
+          test -f build-source/package.json
+          test -f build-source/capacitor.config.json
+          test -f build-source/www/index.html
 
       - name: Install dependencies
+        working-directory: build-source
         run: npm install --no-audit --no-fund
 
       - name: Add Android platform
+        working-directory: build-source
         run: npx cap add android
 
       - name: Sync Capacitor
+        working-directory: build-source
         run: npx cap sync android
 
-      - name: Build debug APK
+      - name: Build APK
+        working-directory: build-source/android
         run: |
-          cd android
           chmod +x gradlew
           ./gradlew assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: Jenga-Football-APK
-          path: android/app/build/outputs/apk/debug/app-debug.apk
+          name: Jenga-Football-V3.0-Automation-Ready-APK
+          path: build-source/android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 7
+          
