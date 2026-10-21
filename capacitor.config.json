@@ -1,6 +1,6 @@
 {
-  "appId": "com.jenga.footballv30",
-  "appName": "Jenga Football V3.0",
+  "appId": "com.jenga.footballv3a",
+  "appName": "Jenga Football Auto",
   "webDir": "www",
   "server": {
     "androidScheme": "https"

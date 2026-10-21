@@ -1,0 +1,46 @@
+services:
+  - type: web
+    name: jenga-football-v30-api
+    runtime: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install --no-audit --no-fund
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: NODE_ENV
+        value: production
+      - key: JENGA_ACCESS_TOKEN
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: DEEPSEEK_API_KEY
+        sync: false
+      - key: APISPORTS_KEY
+        sync: false
+      - key: TAVILY_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-5.6-sol
+      - key: OPENAI_REASONING_EFFORT
+        value: max
+      - key: OPENAI_REASONING_MODE
+        value: pro
+      - key: GEMINI_MODEL
+        value: gemini-3.1-pro-preview
+      - key: GEMINI_THINKING_LEVEL
+        value: high
+      - key: ANTHROPIC_MODEL
+        value: claude-fable-5-1
+      - key: ANTHROPIC_EFFORT
+        value: max
+      - key: DEEPSEEK_MODEL
+        value: deepseek-v4-pro
+      - key: DEEPSEEK_REASONING_EFFORT
+        value: max
